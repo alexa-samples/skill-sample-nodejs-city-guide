@@ -1,0 +1,39 @@
+Alexa tell my food log that I had mongolian beef
+alexa “good night” turn everything off
+* Alexa santa shopping list
+Alexa what is the status of AWS?  What is the status of EC2-Us-East-1?
+* Alexa show me saturn programmable telescope with educational info
+Alexa, what have I forgotten for my trip? Camping/vacation/etc
+Alexa, can you check my portfolio status?  What are the market conditions?
+Alexa, restore my faith in humanity.  Gives you reasons to live.
+Alexa, move the drones to waypoint five.  Drone manipulation.
+Alexa, Uber my Tinder.
+Alexa, get me the milk, eggs, and flour.  Get the GROCERIES!
+Alexa, my glucose level is currently 86.2.  Here’s what you should do.
+Alexa, check my stacks.
+Alexa, tell me more about my medicine.  What are the reactions?  With tracking data.
+Alexa, find me deals on my wishlist.  
+Alexa, print me a new fork.  I need a new Kylo Ren figure.
+Alexa, where is the pharmacy in this hospital.
+* Alexa, get me customer service at AT&T.  Call me when they’re ready.
+Alexa, where is my daughter right now?
+* Alexa, bring my wife flowers.  Based on learning in the home.
+Alexa, send me wife flowers on our anniversary.
+Alexa, where is the best place to sell my 89 Buick?
+Alexa, get Travel Agent to book a trip to Vegas.  Gets hotel, flight, rental car, etc.
+Alexa, what have my students posted?  What is my GPA?
+* Alexa, when do I need to leave for my flight?  Super-contextual response.
+Alexa, hack all the things.  Do the automated testing as you will.
+Alexa, who broke the build?
+Alexa, give me a review for this game I’m playing.  Help me find stuff.
+* Alexa, how is my business doing?  Looks at all of the backend financials.
+Alexa, do I have enough gas to get to work?
+Alexa, start my car!
+Alexa, what is my current flexible spending account balance?  What are our deductibles?  What is my 401k balance?
+Alexa, who are my customers?  
+Alexa, I just did 300 pushups.  How many calories did I burn?
+Alexa, what is my daily summary?  Exercise, distance traveled.  Give plan in morning.
+Alexa, buy 10 shares of AMZN.  Sell sell sell!
+Alexa, what kind of food should my dog eat?  Why is he puking purple?
+Alexa, what is my home status?  Checks all of the sensors, visitors, etc.
+* Alexa, do I need to change my water filter.  I changed my water filter!
