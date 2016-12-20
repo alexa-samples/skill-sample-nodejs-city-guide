@@ -7,7 +7,8 @@
     { "intent": "getNewsIntent", "slots": [] },  
     { "intent": "AMAZON.YesIntent", "slots": [] },  
     { "intent": "AMAZON.NoIntent", "slots": [] },  
-    { "intent": "AMAZON.HelpIntent", "slots": [] },  
+    { "intent": "AMAZON.HelpIntent", "slots": [] },
+    { "intent": "AMAZON.StopIntent", "slots": [] }, 
     { "intent": "AMAZON.RepeatIntent", "slots": [] }
   ]  
 }
