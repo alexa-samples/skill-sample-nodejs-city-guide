@@ -78,6 +78,10 @@ var newSessionHandlers = {
         this.handler.state = states.SEARCHMODE;
         this.emitWithState('getTopFiveIntent');
     },
+    'getNewsIntent': function(){
+        this.handler.state = states.SEARCHMODE;
+        this.emitWithState('getNewsIntent');
+    },
     'Unhandled': function () {
         output = HelpMessage;
         this.emit(':ask', output, welcomeRepromt);
@@ -244,7 +248,10 @@ var topFiveHandlers = Alexa.CreateStateHandler(states.TOPFIVE, {
     'AMAZON.RepeatIntent': function () {
         this.emit(':ask', output, HelpMessage);
     },
-
+    'getNewsIntent': function(){
+        this.handler.state = states.SEARCHMODE;
+        this.emitWithState('getNewsIntent');
+    },
     'SessionEndedRequest': function () {
         // Use this function to clear up and save any data needed between sessions
     },
@@ -268,7 +275,7 @@ function httpGet(query, callback) {
     var options = {
       //http://api.nytimes.com/svc/search/v2/articlesearch.json?q=seattle&sort=newest&api-key=
         host: 'api.nytimes.com',
-        path: '/svc/search/v2/articlesearch.json?q=' + query + '&sort=newest&api-key=' + APIKey,
+        path: '/svc/search/v2/articlesearch.json?q=' + encodeURI(query) + '&sort=newest&api-key=' + APIKey,
         method: 'GET'
     };
 
