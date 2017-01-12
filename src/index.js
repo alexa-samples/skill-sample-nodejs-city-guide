@@ -82,6 +82,10 @@ var newSessionHandlers = {
         this.handler.state = states.SEARCHMODE;
         this.emitWithState('getNewsIntent');
     },
+    'getOverview': function(){
+        this.handler.state = states.SEARCHMODE;
+        this.emitWithState('getOverview');
+    },
     'Unhandled': function () {
         output = HelpMessage;
         this.emit(':ask', output, welcomeRepromt);
@@ -251,6 +255,18 @@ var topFiveHandlers = Alexa.CreateStateHandler(states.TOPFIVE, {
     'getNewsIntent': function(){
         this.handler.state = states.SEARCHMODE;
         this.emitWithState('getNewsIntent');
+    },
+    'getAttractionIntent': function () {
+        this.handler.state = states.SEARCHMODE;
+        this.emitWithState('getAttractionIntent');
+    },
+    'getTopFiveIntent': function(){
+        this.handler.state = states.SEARCHMODE;
+        this.emitWithState('getTopFiveIntent');
+    },
+    'getOverview': function(){
+        this.handler.state = states.SEARCHMODE;
+        this.emitWithState('getOverview');
     },
     'SessionEndedRequest': function () {
         // Use this function to clear up and save any data needed between sessions
