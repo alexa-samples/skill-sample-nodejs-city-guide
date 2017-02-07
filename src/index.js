@@ -16,7 +16,7 @@ var welcomeMessage = location + " Guide. You can ask me for an attraction, the l
 
 var welcomeRepromt = "You can ask me for an attraction, the local news, or  say help. What will it be?";
 
-var locationOverview = "Seattle is a West Coast seaport city and the  seat of King County. With an estimated 684,451 residents as of 2015, Seattle is the largest city in both the state of Washington and the Pacific Northwest region of North America.";
+var locationOverview = "Seattle is a West Coast seaport city and the  seat of King County. With an estimated 684,451 residents as of 2015, Seattle is the largest city in both the state of Washington and the Pacific Northwest region of North America.  What else would you like to know?";
 
 var HelpMessage = "Here are some things you  can say: Give me an attraction. Tell me about " + location + ". Tell me the top five things to do. Tell me the local news.  What would you like to do?";
 
@@ -65,9 +65,7 @@ var topFiveIntro = "Here are the top five things to  do in " + location + ".";
 var newSessionHandlers = {
     'LaunchRequest': function () {
         this.handler.state = states.SEARCHMODE;
-
         output = welcomeMessage;
-
         this.emit(':ask', output, welcomeRepromt);
     },
     'getAttractionIntent': function () {
@@ -78,44 +76,29 @@ var newSessionHandlers = {
         this.handler.state = states.SEARCHMODE;
         this.emitWithState('getTopFiveIntent');
     },
-    'getNewsIntent': function(){
-        this.handler.state = states.SEARCHMODE;
-        this.emitWithState('getNewsIntent');
+    'AMAZON.StopIntent': function () {
+        this.emit(':tell', goodbyeMessage);
     },
-    'getOverview': function(){
-        this.handler.state = states.SEARCHMODE;
-        this.emitWithState('getOverview');
+    'AMAZON.CancelIntent': function () {
+        // Use this function to clear up and save any data needed between sessions
+        this.emit(":tell", goodbyeMessage);
+    },
+    'SessionEndedRequest': function () {
+        // Use this function to clear up and save any data needed between sessions
+        this.emit('AMAZON.StopIntent');
     },
     'Unhandled': function () {
         output = HelpMessage;
         this.emit(':ask', output, welcomeRepromt);
     },
-    'AMAZON.StopIntent': function () {
-        this.emit(':tell', goodbyeMessage);
-    },
-    'SessionEndedRequest': function () {
-        // Use this function to clear up and save any data needed between sessions
-        this.emit('AMAZON.StopIntent');
-    }
 };
 
 var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
-    'AMAZON.HelpIntent': function () {
-
-        output = HelpMessage;
-
-        this.emit(':ask', output, HelpMessage);
-    },
-
     'getOverview': function () {
-
         output = locationOverview;
-
-        this.emit(':tellWithCard', output, location, locationOverview);
+        this.emit(':askWithCard', output, location, locationOverview);
     },
-
     'getAttractionIntent': function () {
-
         var cardTitle = location;
         var cardContent = "";
 
@@ -130,34 +113,31 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
             this.emit(':ask', noAttractionErrorMessage, tryAgainMessage);
         }
     },
-
     'getTopFiveIntent': function () {
-
         output = topFiveIntro;
-
-        var cardTitle = "";
+        var cardTitle = "Top Five Things To See in " + location;
 
         for (var counter = topFive.length - 1; counter >= 0; counter--) {
             output += " Number " + topFive[counter].number + ": " + topFive[counter].caption + newline;
         }
-
         output += topFiveMoreInfo;
-
         this.handler.state = states.TOPFIVE;
         this.emit(':askWithCard', output, topFiveMoreInfo, cardTitle, output);
     },
-
     'AMAZON.YesIntent': function () {
         output = HelpMessage;
         this.emit(':ask', output, HelpMessage);
     },
-
     'AMAZON.NoIntent': function () {
         output = HelpMessage;
         this.emit(':ask', HelpMessage, HelpMessage);
     },
     'AMAZON.StopIntent': function () {
         this.emit(':tell', goodbyeMessage);
+    },
+    'AMAZON.HelpIntent': function () {
+        output = HelpMessage;
+        this.emit(':ask', output, HelpMessage);
     },
     'getNewsIntent': function () {
         httpGet(location, function (response) {
@@ -200,12 +180,14 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
     'AMAZON.RepeatIntent': function () {
         this.emit(':ask', output, HelpMessage);
     },
-
+    'AMAZON.CancelIntent': function () {
+        // Use this function to clear up and save any data needed between sessions
+        this.emit(":tell", goodbyeMessage);
+    },
     'SessionEndedRequest': function () {
         // Use this function to clear up and save any data needed between sessions
         this.emit('AMAZON.StopIntent');
     },
-
     'Unhandled': function () {
         output = HelpMessage;
         this.emit(':ask', output, welcomeRepromt);
@@ -213,10 +195,20 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 });
 
 var topFiveHandlers = Alexa.CreateStateHandler(states.TOPFIVE, {
+    'getAttractionIntent': function () {
+        this.handler.state = states.SEARCHMODE;
+        this.emitWithState('getAttractionIntent');
+    },
+    'getOverview': function () {
+        this.handler.state = states.SEARCHMODE;
+        this.emitWithState('getOverview');
+    },
+    'getTopFiveIntent': function () {
+        this.handler.state = states.SEARCHMODE;
+        this.emitWithState('getTopFiveIntent');
+    },
     'AMAZON.HelpIntent': function () {
-
         output = HelpMessage;
-
         this.emit(':ask', output, HelpMessage);
     },
 
@@ -241,7 +233,6 @@ var topFiveHandlers = Alexa.CreateStateHandler(states.TOPFIVE, {
         output = getMoreInfoMessage;
         alexa.emit(':ask', output, getMoreInfoRepromtMessage);
     },
-
     'AMAZON.NoIntent': function () {
         output = goodbyeMessage;
         alexa.emit(':tell', output);
@@ -252,21 +243,9 @@ var topFiveHandlers = Alexa.CreateStateHandler(states.TOPFIVE, {
     'AMAZON.RepeatIntent': function () {
         this.emit(':ask', output, HelpMessage);
     },
-    'getNewsIntent': function(){
-        this.handler.state = states.SEARCHMODE;
-        this.emitWithState('getNewsIntent');
-    },
-    'getAttractionIntent': function () {
-        this.handler.state = states.SEARCHMODE;
-        this.emitWithState('getAttractionIntent');
-    },
-    'getTopFiveIntent': function(){
-        this.handler.state = states.SEARCHMODE;
-        this.emitWithState('getTopFiveIntent');
-    },
-    'getOverview': function(){
-        this.handler.state = states.SEARCHMODE;
-        this.emitWithState('getOverview');
+    'AMAZON.CancelIntent': function () {
+        // Use this function to clear up and save any data needed between sessions
+        this.emit(":tell", goodbyeMessage);
     },
     'SessionEndedRequest': function () {
         // Use this function to clear up and save any data needed between sessions
@@ -291,7 +270,7 @@ function httpGet(query, callback) {
     var options = {
       //http://api.nytimes.com/svc/search/v2/articlesearch.json?q=seattle&sort=newest&api-key=
         host: 'api.nytimes.com',
-        path: '/svc/search/v2/articlesearch.json?q=' + encodeURI(query) + '&sort=newest&api-key=' + APIKey,
+        path: '/svc/search/v2/articlesearch.json?q=' + query + '&sort=newest&api-key=' + APIKey,
         method: 'GET'
     };
 
