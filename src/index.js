@@ -10,7 +10,7 @@ var location = "Seattle";
 
 var numberOfResults = 3;
 
-var APIKey = "4844d21f760b47359945751b9f875877";
+var APIKey = ""; // Insert your API KEY here
 
 var welcomeMessage = location + " Guide. You can ask me for an attraction, the local news, or  say help. What will it be?";
 
