@@ -144,7 +144,7 @@ To make the development of skills easier, we have created the ASK SDK for Node.j
     
  **Note: If you already have an AWS account, you can skip this section.  Just sign in to your console.**
 
-1.  Open [aws.amazon.com](aws.amazon.com) and then choose **‘Create an AWS Account’**
+1.  Open [aws.amazon.com](https://aws.amazon.com) and then choose **‘Create an AWS Account’**
 
     1. Follow the online instructions. Do not worry about the IAM role, we will do that later.
     2. You will need a Valid Credit Card to set up your account (note the AWS Free Tier will suffice however. [You can find out more about the free tier here](https://aws.amazon.com/free/?sc_ichannel=ha&amp;sc_ipage=signin&amp;sc_iplace=body_link_text&amp;sc_icampaigntype=free_tier&amp;sc_icampaign=ha_en_free_tier_signin_2014_03).)
