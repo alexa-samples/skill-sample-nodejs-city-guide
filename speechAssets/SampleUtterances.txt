@@ -32,7 +32,3 @@ getNewsIntent the latest news
 getNewsIntent the news
 getNewsIntent news
 getNewsIntent local news
-
-AMAZON.StopIntent stop
-AMAZON.StopIntent off
-AMAZON.StopIntent shut up

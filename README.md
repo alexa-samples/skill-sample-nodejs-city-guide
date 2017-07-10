@@ -54,7 +54,7 @@ Skills are managed through the Amazon Developer Portal. You’ll link the Lambda
    
     ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/general/intent-schema._TTH_.png)
  
-6.  Review the Intent Schema below. This is written in JSON and provides the information needed to map the intents we want to handle programmatically.  Copy this from the intent schema in the [GitHub repository here](https://github.com/alexa/skill-sample-nodejs-city-guide/blob/master/speechAssets/intents.json).
+6.  Review the Intent Schema below. This is written in JSON and provides the information needed to map the intents we want to handle programmatically.  Copy this from the intent schema in the [GitHub repository here](https://github.com/alexa/skill-sample-nodejs-city-guide/blob/master/speechAssets/intentSchema.json).
     
     Below you will see a collection of intents that we expect our users to indicate by voice.  They can ask for an overview of your city, they can ask about the Top Five attractions (in addition to asking for more information about those attractions), and they can ask for the news for your city. Intents can optionally have arguments called slots.
     
@@ -63,22 +63,24 @@ Skills are managed through the Amazon Developer Portal. You’ll link the Lambda
     For the getMoreInfoIntent, the user will be providing a number, like "Tell me about attraction number one." [For more on the use of built-in intents, go here](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/implementing-the-built-in-intents).
 
     ```JSON
-    {  
-      "intents": [  
-        { "intent": "getOverview", "slots": [] },  
-        { "intent": "getTopFiveIntent", "slots": [] },  
-        { "intent": "getAttractionIntent", "slots": [] },  
-        { "intent": "getMoreInfoIntent", "slots": [{ "name": "attraction", "type": "AMAZON.NUMBER" }] },  
-        { "intent": "getNewsIntent", "slots": [] },  
-        { "intent": "AMAZON.YesIntent", "slots": [] },  
-        { "intent": "AMAZON.NoIntent", "slots": [] },  
-        { "intent": "AMAZON.HelpIntent", "slots": [] },  
+    {
+      "intents": [
+        { "intent": "getOverview", "slots": [] },
+        { "intent": "getTopFiveIntent", "slots": [] },
+        { "intent": "getAttractionIntent", "slots": [] },
+        { "intent": "getMoreInfoIntent", "slots": [{ "name": "attraction", "type": "AMAZON.NUMBER" }] },
+        { "intent": "getNewsIntent", "slots": [] },
+        { "intent": "AMAZON.YesIntent", "slots": [] },
+        { "intent": "AMAZON.NoIntent", "slots": [] },
+        { "intent": "AMAZON.HelpIntent", "slots": [] },
+        { "intent": "AMAZON.StopIntent", "slots": [] },
+        { "intent": "AMAZON.CancelIntent", "slots": [] },
         { "intent": "AMAZON.RepeatIntent", "slots": [] }
-      ]  
+      ]
     }
     ```
     
-    You can see that we have defined four different built-in intents: Yes, No, Help, and Repeat.  These are built-in intents that we can use for common commands our users will indicate.  
+    You can see that we have defined a set of standard built-in intents: Yes, No, Help, Stop, Cancel, and Repeat.  These are built-in intents that we can use for common commands our users will indicate.
 
 7.  The next step is to build the utterance list.  This is meant to be a thorough, well-thought-out list of the ways users will try to interact with your skill.  You don't have to get every possible phrase, but it is important to cover a variety of utterances so that the Natural Language Understanding(NLU) engine can best interpret your user's intent.
 
