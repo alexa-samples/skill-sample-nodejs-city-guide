@@ -18,7 +18,7 @@ After completing this tutorial, you'll know how to do the following:
    * __Use JavaScript/Node.js and the Alexa Skills Kit to create a skill__ - You will use the template as a guide but the customization is up to you. For more background information on using the Alexa Skills Kit please [watch this video](https://goto.webcasts.com/starthere.jsp?ei=1087595).
    * __[Manage state](https://github.com/alexa/alexa-skills-kit-sdk-for-nodejs#making-skill-state-management-simpler) in an Alexa skill__ - Depending on the user's choices, we can handle intents differently.
    * __Get your skill published__ - Once you have completed your skill, this tutorial will guide you through testing your skill and sending your skill through the certification process so it can be enabled by any Alexa user.  [You may even be eligible for some Alexa swag!](https://developer.amazon.com/alexa-skills-kit/alexa-developer-skill-promotion)
-   * __Interact with the Bing Search API__.
+
 
 Get started and build your first - or next - Alexa skill today.
 
