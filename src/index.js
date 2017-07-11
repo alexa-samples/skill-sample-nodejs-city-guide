@@ -24,9 +24,9 @@ var moreInformation = "See your  Alexa app for  more  information."
 
 var tryAgainMessage = "please try again."
 
-var noAttractionErrorMessage = "There was an error finding this attraction, " + tryAgainMessage;
+var noAttractionErrorMessage = "What attraction was that? " + tryAgainMessage;
 
-var topFiveMoreInfo = " You can tell me a number for more information. For example open number one.";
+var topFiveMoreInfo = " You can tell me a number for more information. For example, open number one.";
 
 var getMoreInfoRepromtMessage = "What number attraction would you like to hear about?";
 
@@ -68,6 +68,14 @@ var newSessionHandlers = {
         output = welcomeMessage;
         this.emit(':ask', output, welcomeRepromt);
     },
+    'getOverview': function () {
+        this.handler.state = states.SEARCHMODE;
+        this.emitWithState('getOverview');
+    },
+    'getNewsIntent': function () {
+        this.handler.state = states.SEARCHMODE;
+        this.emitWithState('getNewsIntent');
+    },
     'getAttractionIntent': function () {
         this.handler.state = states.SEARCHMODE;
         this.emitWithState('getAttractionIntent');
@@ -96,7 +104,7 @@ var newSessionHandlers = {
 var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
     'getOverview': function () {
         output = locationOverview;
-        this.emit(':askWithCard', output, location, locationOverview);
+        this.emit(':askWithCard', output, output, locationOverview);
     },
     'getAttractionIntent': function () {
         var cardTitle = location;
@@ -213,11 +221,18 @@ var topFiveHandlers = Alexa.CreateStateHandler(states.TOPFIVE, {
     },
 
     'getMoreInfoIntent': function () {
-        var slotValue = this.event.request.intent.slots.attraction.value;
-        var index = parseInt(slotValue) - 1;
+        var slotValue = 0;
+        if(this.event.request.intent.slots.attraction ) {
+            if (this.event.request.intent.slots.attraction.value) {
+                slotValue = this.event.request.intent.slots.attraction.value;
 
-        var selectedAttraction = topFive[index];
-        if (selectedAttraction) {
+            }
+        }
+
+        if (slotValue > 0 && slotValue <= topFive.length) {
+
+            var index = parseInt(slotValue) - 1;
+            var selectedAttraction = topFive[index];
 
             output = selectedAttraction.caption + ". " + selectedAttraction.more + ". " + hearMoreMessage;
             var cardTitle = selectedAttraction.name;
@@ -265,10 +280,10 @@ exports.handler = function (event, context, callback) {
 
 // Create a web request and handle the response.
 function httpGet(query, callback) {
-  console.log("/n QUERY: "+query);
+    console.log("/n QUERY: "+query);
 
     var options = {
-      //http://api.nytimes.com/svc/search/v2/articlesearch.json?q=seattle&sort=newest&api-key=
+        //http://api.nytimes.com/svc/search/v2/articlesearch.json?q=seattle&sort=newest&api-key=
         host: 'api.nytimes.com',
         path: '/svc/search/v2/articlesearch.json?q=' + query + '&sort=newest&api-key=' + APIKey,
         method: 'GET'
@@ -276,25 +291,25 @@ function httpGet(query, callback) {
 
     var req = http.request(options, (res) => {
 
-        var body = '';
+            var body = '';
 
-        res.on('data', (d) => {
-            body += d;
-        });
+    res.on('data', (d) => {
+        body += d;
+});
 
-        res.on('end', function () {
-            callback(body);
-        });
-
+    res.on('end', function () {
+        callback(body);
     });
+
+});
     req.end();
 
     req.on('error', (e) => {
         console.error(e);
-    });
+});
 }
 
 String.prototype.trunc =
-      function (n) {
-          return this.substr(0, n - 1) + (this.length > n ? '&hellip;' : '');
-      };
+    function (n) {
+        return this.substr(0, n - 1) + (this.length > n ? '&hellip;' : '');
+    };

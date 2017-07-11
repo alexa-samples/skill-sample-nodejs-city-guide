@@ -1,6 +1,5 @@
 getOverview more information about seattle
 getOverview what's it like in seattle
-getOverview tell me more about seattle 
 getOverview tell me some facts about seattle 
 getOverview facts about seattle 
 getOverview overview of seattle
@@ -19,10 +18,8 @@ getAttractionIntent where should I go
 getAttractionIntent an attraction
 getAttractionIntent attractions 
 
-getMoreInfoIntent tell me more about number {attraction}
-getMoreInfoIntent what is number {attraction}
-getMoreInfoIntent more about number {attraction}
-getMoreInfoIntent number {attraction} 
+getMoreInfoIntent open number {attraction}
+getMoreInfoIntent number {attraction}
 getMoreInfoIntent {attraction}
 
 getNewsIntent tell me the local news

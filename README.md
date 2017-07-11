@@ -91,26 +91,42 @@ Skills are managed through the Amazon Developer Portal. You’ll link the Lambda
     Now it is time to add the Utterances. Copy/paste the sample utterances from [GitHub](https://github.com/alexa/skill-sample-nodejs-city-guide/blob/master/speechAssets/SampleUtterances.txt). An example of utterances is listed below.
 
     ```
-    getOverview tell me about Seattle
+        getOverview more information about seattle
+        getOverview what's it like in seattle
+        getOverview tell me some facts about seattle
+        getOverview facts about seattle
+        getOverview overview of seattle
+        getOverview seattle facts
+        getOverview seattle overview
 
-    getTopFiveIntent tell me top five things to do
-    getTopFiveIntent what are the top five things to do
-    getTopFiveIntent what I should see
+        getTopFiveIntent tell me the top five things
+        getTopFiveIntent top five things to do
+        getTopFiveIntent give me the top five
+        getTopFiveIntent the top five
+        getTopFiveIntent top five
+        getTopFiveIntent the top five things to do
 
-    getAttractionIntent tell me what to do
-    getAttractionIntent give me an attraction
+        getAttractionIntent tell me a good attraction
+        getAttractionIntent where should I go
+        getAttractionIntent an attraction
+        getAttractionIntent attractions
 
-    getMoreInfoIntent tell me more about {attraction}
-    getMoreInfoIntent open attraction {attraction}
-    getMoreInfoIntent open number {attraction}
+        getMoreInfoIntent open number {attraction}
+        getMoreInfoIntent number {attraction}
+        getMoreInfoIntent {attraction}
 
-    getNewsIntent get me the news
-    getNewsIntent tell me the news
+        getNewsIntent tell me the local news
+        getNewsIntent what is the latest news
+        getNewsIntent the local news
+        getNewsIntent the latest news
+        getNewsIntent the news
+        getNewsIntent news
+        getNewsIntent local news
     ```
     
     As you can see in the example above, we are using our custom intents with phrases that our users might use to interact with our skill.  Each example is a different way that a user might ask for that intent.  getMoreInfoIntent expects an AMAZON.NUMBER slot, so we have specified this in our utterances with {attraction}.  ([More information on slots can be found here.](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interaction-model-reference#slot-types))
 
-9.  Select **Save**. You should see the interaction model being built (this might take a minute or two). If you select Next, your changes will be saved and you will go directly to the Configuration screen. After selecting Save, it should now look like this:
+9.  Select **Save**. You should see the interaction model being built (this might take a minute or two). If you select Next, your changes will be saved and you will go directly to the Configuration screen. After selecting Save, it should now look similar to this:
 
     ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/city-guide/interaction-model._TTH_.png)
 
