@@ -50,6 +50,7 @@ var attractions = [
     { name: "Cat's Cradle", content: "The Cat's Cradle is a music venue located in Carrboro. The Cat's Cradle hosts up and coming indie music acts, but also hosts established acts- including Nirvana, Pearl Jam, and Public Enemy. Tickets are very affordable and range from 8 to 20 dollars a piece.", location: "Street Address: 300 E Main Street\n", contact: "206 684 4075" },
     { name: "The Arts Center", content: "For thirty years the ArtsCenter in Carrboro has functioned as a dynamic artistic center for the community. It features a nonstop calendar of art classes, world-music, theater, children and family programming, and art exhibits. The facilities include a theater, classrooms, a dance studio, an informal performance space, and an art gallery.", location: "Street Address:\n 300-G East Main Street\n", contact: "919 929 2787" },
     { name: "The Taco Trucks!", content: "Carrboro has a taco truck on every corner. Tacos are delecious- and anyone who has eaten a taco from a taco truck can attest that they produce the world's best tacos.", location: "Street Address: Every Corner", contact: "1-800-TACO\n Warning: Not actually how you contact a taco truck.\n Taco trucks are decentralized and do not share a single number." },
+
 ];
 
 var topFive = [
@@ -105,6 +106,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
     'getOverview': function () {
         output = locationOverview;
         this.emit(':askWithCard', output, output, locationOverview);
+
     },
     'getAttractionIntent': function () {
         var cardTitle = location;
@@ -313,3 +315,4 @@ String.prototype.trunc =
     function (n) {
         return this.substr(0, n - 1) + (this.length > n ? '&hellip;' : '');
 };
+

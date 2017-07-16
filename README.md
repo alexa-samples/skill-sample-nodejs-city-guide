@@ -18,7 +18,7 @@ After completing this tutorial, you'll know how to do the following:
    * __Use JavaScript/Node.js and the Alexa Skills Kit to create a skill__ - You will use the template as a guide but the customization is up to you. For more background information on using the Alexa Skills Kit please [watch this video](https://goto.webcasts.com/starthere.jsp?ei=1087595).
    * __[Manage state](https://github.com/alexa/alexa-skills-kit-sdk-for-nodejs#making-skill-state-management-simpler) in an Alexa skill__ - Depending on the user's choices, we can handle intents differently.
    * __Get your skill published__ - Once you have completed your skill, this tutorial will guide you through testing your skill and sending your skill through the certification process so it can be enabled by any Alexa user.  [You may even be eligible for some Alexa swag!](https://developer.amazon.com/alexa-skills-kit/alexa-developer-skill-promotion)
-   * __Interact with the Bing Search API__.
+
 
 Get started and build your first - or next - Alexa skill today.
 
@@ -91,26 +91,42 @@ Skills are managed through the Amazon Developer Portal. You’ll link the Lambda
     Now it is time to add the Utterances. Copy/paste the sample utterances from [GitHub](https://github.com/alexa/skill-sample-nodejs-city-guide/blob/master/speechAssets/SampleUtterances.txt). An example of utterances is listed below.
 
     ```
-    getOverview tell me about Seattle
+        getOverview more information about seattle
+        getOverview what's it like in seattle
+        getOverview tell me some facts about seattle
+        getOverview facts about seattle
+        getOverview overview of seattle
+        getOverview seattle facts
+        getOverview seattle overview
 
-    getTopFiveIntent tell me top five things to do
-    getTopFiveIntent what are the top five things to do
-    getTopFiveIntent what I should see
+        getTopFiveIntent tell me the top five things
+        getTopFiveIntent top five things to do
+        getTopFiveIntent give me the top five
+        getTopFiveIntent the top five
+        getTopFiveIntent top five
+        getTopFiveIntent the top five things to do
 
-    getAttractionIntent tell me what to do
-    getAttractionIntent give me an attraction
+        getAttractionIntent tell me a good attraction
+        getAttractionIntent where should I go
+        getAttractionIntent an attraction
+        getAttractionIntent attractions
 
-    getMoreInfoIntent tell me more about {attraction}
-    getMoreInfoIntent open attraction {attraction}
-    getMoreInfoIntent open number {attraction}
+        getMoreInfoIntent open number {attraction}
+        getMoreInfoIntent number {attraction}
+        getMoreInfoIntent {attraction}
 
-    getNewsIntent get me the news
-    getNewsIntent tell me the news
+        getNewsIntent tell me the local news
+        getNewsIntent what is the latest news
+        getNewsIntent the local news
+        getNewsIntent the latest news
+        getNewsIntent the news
+        getNewsIntent news
+        getNewsIntent local news
     ```
     
     As you can see in the example above, we are using our custom intents with phrases that our users might use to interact with our skill.  Each example is a different way that a user might ask for that intent.  getMoreInfoIntent expects an AMAZON.NUMBER slot, so we have specified this in our utterances with {attraction}.  ([More information on slots can be found here.](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interaction-model-reference#slot-types))
 
-9.  Select **Save**. You should see the interaction model being built (this might take a minute or two). If you select Next, your changes will be saved and you will go directly to the Configuration screen. After selecting Save, it should now look like this:
+9.  Select **Save**. You should see the interaction model being built (this might take a minute or two). If you select Next, your changes will be saved and you will go directly to the Configuration screen. After selecting Save, it should now look similar to this:
 
     ![](https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/city-guide/interaction-model._TTH_.png)
 
@@ -146,7 +162,7 @@ To make the development of skills easier, we have created the ASK SDK for Node.j
     
  **Note: If you already have an AWS account, you can skip this section.  Just sign in to your console.**
 
-1.  Open [aws.amazon.com](aws.amazon.com) and then choose **‘Create an AWS Account’**
+1.  Open [aws.amazon.com](https://aws.amazon.com) and then choose **‘Create an AWS Account’**
 
     1. Follow the online instructions. Do not worry about the IAM role, we will do that later.
     2. You will need a Valid Credit Card to set up your account (note the AWS Free Tier will suffice however. [You can find out more about the free tier here](https://aws.amazon.com/free/?sc_ichannel=ha&amp;sc_ipage=signin&amp;sc_iplace=body_link_text&amp;sc_icampaigntype=free_tier&amp;sc_icampaign=ha_en_free_tier_signin_2014_03).)
