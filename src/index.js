@@ -6,7 +6,7 @@ var states = {
     TOPFIVE: '_TOPFIVE',
 };
 
-var location = "Seattle";
+var location = "Carrboro";
 
 var numberOfResults = 3;
 
@@ -16,7 +16,7 @@ var welcomeMessage = location + " Guide. You can ask me for an attraction, the l
 
 var welcomeRepromt = "You can ask me for an attraction, the local news, or  say help. What will it be?";
 
-var locationOverview = "Seattle is a West Coast seaport city and the  seat of King County. With an estimated 684,451 residents as of 2015, Seattle is the largest city in both the state of Washington and the Pacific Northwest region of North America. ";
+var locationOverview = "Carrboro is a city in the North Carolina triangle and is in Orange country. Located directly west of Chapel Hill, home of the University of North Carolina's flagship campus, Carrboro has a reputation as one of the most progressive communities in the Southern United States.  What else would you like to know?";
 
 var HelpMessage = "Here are some things you  can say: Give me an attraction. Tell me about " + location + ". Tell me the top five things to do. Tell me the local news.  What would you like to do?";
 
@@ -45,19 +45,20 @@ var output = "";
 var alexa;
 
 var attractions = [
-    { name: "The Woodland Park Zoo", content: "located just 10 minutes north of downtown Seattle. The zoo's 92-acres and award-winning exhibits are home to more than 1,000 animals representing 300 species from around the world.", location: "There are two zoo entrances. \n West Entrance:\n Cross streets: Phinney Ave. N. between N. 55th St. & N. 56th St.\n Street address: 5500 Phinney Ave. N., Seattle WA 98103\n South Entrance:\n Cross streets: N. 50th Street & Fremont Ave. N.\n Street address: 750 N. 50th Street, Seattle WA 98103", contact: "zooinfo@zoo.org\n 206 548 2500" },
-    { name: "The EMP Museum", content: "Dedicated to contemporary popular culture, the EMP Museum was established by Microsoft co-founder Paul Allen in 2000. It's home to exhibits, interactive activity stations, sound sculpture, and various educational resources.", location: "325 5th Avenue N, Seattle, Washington", contact: "206 770 2700" },
-    { name: "Waterfront Park", content: "Designed by the Bumgardner Partnership and consultants, Waterfront Park is a public park constructed on the site of the former Schwabacher Wharf. you can enjoy excellent views of the surrounding arey, such as the city skyline, ships in drydock, container cranes and the West Seattle Bridge.", location: "1401 Alaskan Way, Seattle, WA 98101, United States", contact: "206 684 4075" },
-    { name: "Chihuly Garden and Glass", content: "Opened in 2012 on the former site of the Fun Forest, Chihuly Garden and Glass is an exhibit showcasing the work of Dale Chihuly. It comprises of three primary components: the Garden, the Glasshouse, and the Interior Exhibit. There is also a 90 seat cafe with additional outdoor dining.", location: "305 Harrison St, Seattle, WA 98109, United States", contact: "206 753 4940" },
-    { name: "Woodland Park", content: "A 90 acre public park home to many species of birds and mammals. Woodland park boasts several picnic areas, a formal rose garden, ballfields, a miniature golf range and a play area for children.", location: "1000 N 50th St, Seattle, WA 98103, United States", contact: "206 684 4075" },
+    { name: "Weaver Street Lawn", content: "Weaver Street Market,  a community owned grocery, has three locations and all host free live music events on Sundays.", location: "There are three locations. \n Carrboro:\n Street Address: 101 East Weaver Street\n Hillsborough\n Street Address: 228 South Churton Street \n Chapel Hill\n Street address: 716 Market Street\n", contact: "919 929 0010" },
+    { name: "Farmers Market", content: "Touted as one of the finest local markets in the country, the Carrboro Farmers' Market has provided an opportunity for local farmers to sell their products directly to the consumer since 1979.", location: "Street Address: 301 W Main St\n", contact: "919 280 3326" },
+    { name: "Cat's Cradle", content: "The Cat's Cradle is a music venue located in Carrboro. The Cat's Cradle hosts up and coming indie music acts, but also hosts established acts- including Nirvana, Pearl Jam, and Public Enemy. Tickets are very affordable and range from 8 to 20 dollars a piece.", location: "Street Address: 300 E Main Street\n", contact: "206 684 4075" },
+    { name: "The Arts Center", content: "For thirty years the ArtsCenter in Carrboro has functioned as a dynamic artistic center for the community. It features a nonstop calendar of art classes, world-music, theater, children and family programming, and art exhibits. The facilities include a theater, classrooms, a dance studio, an informal performance space, and an art gallery.", location: "Street Address:\n 300-G East Main Street\n", contact: "919 929 2787" },
+    { name: "The Taco Trucks!", content: "Carrboro has a taco truck on every corner. Tacos are delecious- and anyone who has eaten a taco from a taco truck can attest that they produce the world's best tacos.", location: "Street Address: Every Corner", contact: "1-800-TACO\n Warning: Not actually how you contact a taco truck.\n Taco trucks are decentralized and do not share a single number." },
+
 ];
 
 var topFive = [
-    { number: "1", caption: "Visit the Space Needle and see Seattle from  above.", more: "Once the tallest structure west of the Mississippi River, The Space Needle is an observation tower that reaches a height of 605 feet. The observation deck falls slightly below this, offering views at 520 feet.", location: "400 Broad St. Seattle, WA 98109", contact: "400 Broad St. Seattle, WA 98109" },
-    { number: "2", caption: "Get shopping at Pike Place Market.", more: "One of the oldest farmer's markets in America, Pike Place Market is Seattle's historic arcade of various vendors, winding alleys and stairways to lower levels. The market plays host to more than 10 million visitors annually.", location: "Pike Place Market PDA, 85 Pike Street, Room 500, Seattle, WA 98101", contact: "info@pikeplacemarket.org \n 206 682 7453" },
-    { number: "3", caption: "Earn your  wings at the Museum  of Flight.", more: "This museum is a non-profit air and space museum located at the southern end of King County International Airport . It's the largest private museum of its kind in the world and attracts over 500,000 visitors every year", location: "9404 East Marginal Way South Seattle, WA 98108-4097", contact: "206 764 5700" },
-    { number: "4", caption: "Breathe in the culture  at the Seattle Art  Museum.", more: "Also known as \"SAM\", the Seattle Art Museum maintains three major facilities: its main museum in downtown Seattle; the Seattle Asian Art Museum, and the Olympic Sculpture Park. The flagship museum is host to several great exhibitions and collections for you to experience.", location: "1300 First Ave Seattle, WA 98101", contact: "206 654 3100" },
-    { number: "5", caption: "Take a spin on the  Seattle Great Wheel.", more: "See Seattle's skyline from the giant Ferris wheel situated on Pier 57. The Seattle Great Wheel is the largest observation wheel on the west coast, standing 175 feet tall.", location: "1301 Alaskan Way, Seattle, Washington 98101", contact: "greatwheel@pier57seattle.com \n 206 623 8607" }
+    { number: "1", caption: "Live and breathe the local food scene!", more: "Carrboro has an ecclectic and exciting local food and drink scene. Visit the critically acclaimed local resturants such as ACME and Pizzeria Mercato. After eating to satiation, have a night cap by visiting the local bars and asking for a pickleback- a local speciality drink.", location: "Mercato: \n408 W Weaver St, Carrboro, NC\nBaxter Barcade:\n 108 N Graham St, Carrboro, NC 27510\n", contact: "Mercato: 919 967 2277\nBaxter: 919 929 2263\n" },
+    { number: "2", caption: "Run free at the local greenways.", more: "North Carolina is absolutely beautiful. One of the best ways to experience nature is through the parks system. Carrboro is one of the most pedestrian friendly areas of the entire state, and it shows through their paved and unpaved greenways and park system. When you're in the area- ensure you make time to explore the nature.", location: "Miscellaneous: Review the websites of Carrboro Parks and Recreation for more information", contact: "919 918 4475" },
+    { number: "3", caption: "Geek out at Baxter and put your quarters to good use.", more: "Baxter Barcade is a staple for hip people in Carrboro. When walking in, patrons are greeted with the sounds of classic arcades, pinball flippers, and nostalgic flashign lights. Games are only 25 cents a pop, and Baxter often hosts community events like The Walking Dead night.", location: "108 N Graham St, Carrboro, NC 27510", contact: "919 869 7486" },
+    { number: "4", caption: "Get caught up in the rivalry watching a Tar Heels game.", more: "Get caught up in the rivalry watching a Tar Heels game.", more: "The athletic rivalry between the Duke Blue Devils and North carolina tarheels is considered one of the most intense rivalries in all of sports according to a poll conducted by Sports Illustrated. Visit Franklin Street during a game night and you are guaranteed to be in the midst of hundreds of UNC students and enjoy the energy of the basketball game.", location: "Anywhere on Franklin Street", contact: "Anyone At UNC Chapel Hill" },
+    { number: "5", caption: "Maximize your time giving back to the community by volunteering.", more: "Carrobo is a small town with a tight knight community. Find a non profit that really is powerful to you and make some time to make a difference in the community around you. ReCYCLEry and Weaver Street Market are both great places to start volunteering. Both coops are community owned and are geared towards making people empowered and partner up with disabled communities. Making positive impactful changes on the community around you embodies the Tarheel spirit.", location: "ReCYCLEry: \n108 N Graham St, Chapel Hill, NC 27516\nWeaver Street Market: 716 Market St, Chapel Hill, NC 27516", contact: "ReCYCLEry:\nbikes@recyclery.org Weaver Street Market: tablenc@gmail.com" }
 ];
 
 var topFiveIntro = "Here are the top five things to  do in " + location + ".";
@@ -104,7 +105,8 @@ var newSessionHandlers = {
 var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
     'getOverview': function () {
         output = locationOverview;
-        this.emit(':tellWithCard', output, output, locationOverview);
+        this.emit(':askWithCard', output, output, locationOverview);
+
     },
     'getAttractionIntent': function () {
         var cardTitle = location;
@@ -116,7 +118,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
             cardTitle = attraction.name;
             cardContent = attraction.content + newline + attraction.contact;
 
-            this.emit(':tellWithCard', output, cardTitle, cardContent);
+            this.emit(':askWithCard', output, cardTitle, cardContent);
         } else {
             this.emit(':ask', noAttractionErrorMessage, tryAgainMessage);
         }
@@ -312,4 +314,5 @@ function httpGet(query, callback) {
 String.prototype.trunc =
     function (n) {
         return this.substr(0, n - 1) + (this.length > n ? '&hellip;' : '');
-    };
+};
+
