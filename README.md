@@ -1,4 +1,4 @@
-#How To Build a City Guide for Alexa
+# How To Build a City Guide for Alexa
 
 We all have our favorite places.  It may be your childhood hometown, an exotic place you've visited, or even your college town.  Regardless of why a city is your favorite, we all have our favorite sports to visit and want to tell others about, and that's exactly what this new skill template helps you do.
 
