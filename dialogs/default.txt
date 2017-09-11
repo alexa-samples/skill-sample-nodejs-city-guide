@@ -1,0 +1,13 @@
+# This is a Dialog sequence file
+# Define a set of Intents and run the "TestFlow" tool to execute the sequence from the command line
+# TIPS:
+#  You can toggle on or off various outputs by modifying the settings in testflow.js
+#  You can define a comment with the # sign
+#  You can prompt the user to type or confirm a Slot value by starting the line with a ?
+#   For example,   ? AnswerIntent usstate=Florida
+
+LaunchRequest
+AboutIntent
+BreakfastIntent
+AMAZON.YesIntent
+GoOutIntent
