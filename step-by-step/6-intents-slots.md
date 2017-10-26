@@ -1,4 +1,4 @@
-# Build An Alexa Local Recommendations Skill
+# Build An Alexa City Guide Skill
 [Voice User Interface](../step-by-step/1-voice-user-interface.md) || [Lambda Function](../step-by-step/2-lambda-function.md) || [Connect VUI to Code](../step-by-step/3-connect-vui-to-code.md) || [Testing](../step-by-step/4-testing.md) || [Customization](../step-by-step/5-customization.md) || [Intents and Slots](../step-by-step/6-intents-slots.md) || [Smart Recommendations](../step-by-step/7-smart-recommendations.md) || [Publication](../step-by-step/10-publication.md)
 
 
@@ -8,7 +8,7 @@
 
 1.  **Choosing Slot Types**
 
-Continuing with Local Recommendations, we’ve customized for our city/town, let’s add a feature by adding a new intent, such as a new type of intent that we want our skill to handle. Let’s create an intent so we can ask this skill which sports team plays hockey, baseball, etc. Go into skill builder, create an intent, type a sample utterance, double-click on slot word and define that, then add some code to pull out a slot value and handle the intent and provide a custom response to the user.
+Continuing with City Guide, we’ve customized for our city/town, let’s add a feature by adding a new intent, such as a new type of intent that we want our skill to handle. Let’s create an intent so we can ask this skill which sports team plays hockey, baseball, etc. Go into skill builder, create an intent, type a sample utterance, double-click on slot word and define that, then add some code to pull out a slot value and handle the intent and provide a custom response to the user.
 
 1. Go to developer.amazon, click Interaction Model on the left to enter the skill builder.
 

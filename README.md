@@ -1,4 +1,4 @@
-# Build An Alexa Local Recommendations Skill
+# Build An Alexa City Guide Skill
 <img src="https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/quiz-game/header._TTH_.png" />
 
 
@@ -24,7 +24,7 @@
 ## What Your Skill Will Do
 At some point we all gain some unexpected free time and wonder "What should I do today?". Whether going to a local restaurant or coffeehouse, checking out the local library, or just staying inside if the weather is bad, some suggestions are almost always welcome. Especially when those suggestions come from an individual who knows the area very well.
 
-You can now bring that experience to Alexa using our new local recommendations template. Today you will provide the city and the places to visit in that city, and Alexa will dynamically build a recommendation for you. In the guide, Alexa will give recommendations like:
+You can now bring that experience to Alexa using our new city guide template. Today you will provide the city and the places to visit in that city, and Alexa will dynamically build a recommendation for you. In the guide, Alexa will give recommendations like:
 *  "For breakfast, try this, Zeke's place."
 *  "Seaport Grille is located at 6 Rowe Square."
 *  "Try whale watching, which is 8 miles away. Have fun!"
@@ -65,7 +65,7 @@ If you're not familiar with building Alexa skill, click the get started button f
   1. Advance to the Configuration page, choose AWS Lambda ARN, and paste in the ARN from the function you just created. [Detailed configuration Instructions](step-by-step/3-connect-vui-to-code.md)
 
 ### Task 2: Customize the Skill to be yours
-At this point, you should have a working copy of our Local Recommendations skill.  In order to make it your own, you will need to customize it with data and responses that you create.  [Detailed steps to customize](step-by-step/5-customization.md)
+At this point, you should have a working copy of our City Guide skill.  In order to make it your own, you will need to customize it with data and responses that you create.  [Detailed steps to customize](step-by-step/5-customization.md)
 
 ### Extra Credit
 

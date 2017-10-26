@@ -1,4 +1,4 @@
-# Build An Alexa Local Recommendations Skill
+# Build An Alexa City Guide Skill
 [Voice User Interface](../step-by-step/1-voice-user-interface.md) || [Lambda Function](../step-by-step/2-lambda-function.md) || [Connect VUI to Code](../step-by-step/3-connect-vui-to-code.md) || [Testing](../step-by-step/4-testing.md) || [Customization](../step-by-step/5-customization.md) || [Intents and Slots](../step-by-step/6-intents-slots.md) || [Smart Recommendations](../step-by-step/7-smart-recommendations.md) || [Publication](../step-by-step/10-publication.md)
 
 
@@ -8,7 +8,7 @@
 
 ## Customize the Skill to be Yours
 
-At this point, you should have a working copy of our Local Recommendations skill.  In order to make it your own, you will need to customize it with data and responses that you create.  Here are the things you will need to change:
+At this point, you should have a working copy of our City Guide skill.  In order to make it your own, you will need to customize it with data and responses that you create.  Here are the things you will need to change:
 
 1.  **New data.** You will need to create a new dataset for your skill that *isn't* the Gloucester, Massachusetts.  If you are looking for an idea, just use your hometown or favorite vacation destination.
 
