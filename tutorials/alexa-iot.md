@@ -1,10 +1,8 @@
-# Build An Alexa City Guide Skill
+<!-- # Build An Alexa City Guide Skill
 [Voice User Interface](../step-by-step/1-voice-user-interface.md) || [Lambda Function](../step-by-step/2-lambda-function.md) || [Connect VUI to Code](../step-by-step/3-connect-vui-to-code.md) || [Testing](../step-by-step/4-testing.md) || [Customization](../step-by-step/5-customization.md) || [Intents and Slots](../step-by-step/6-intents-slots.md) || [Smart Recommendations](../step-by-step/7-smart-recommendations.md) || [Publication](../step-by-step/10-publication.md)
 
 
 
-
-<!--<a href="../step-by-step/1-voice-user-interface.md"><img src="https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/navigation/1-locked._TTH_.png" /></a><a href="../step-by-step/2-lambda-function.md"><img src="https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/navigation/2-locked._TTH_.png" /></a><a href="../step-by-step/3-connect-vui-to-code.md"><img src="https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/navigation/3-locked._TTH_.png" /></a><a href="../step-by-step/4-testing.md"><img src="https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/navigation/4-locked._TTH_.png" /></a><a href="../step-by-step/5-customization.md"><img src="https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/navigation/5-locked._TTH_.png" /></a><a href="../step-by-step/10-publication.md"><img src="https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/navigation/6-on._TTH_.png" /></a>-->
 
 ## Use Alexa to Control IoT Devices
 
@@ -36,7 +34,7 @@ When you setup a virtual Thing in a particular region, you will be given the nam
 Together with the Thing name and the name of your region, you can uniquely describe your thing.  Both the back-end (Skill Lambda function) and front end (Device or web app) will point to this thing to exchange data.
 
 ```
-var config = {};
+let config = {};
 config.IOT_BROKER_ENDPOINT      = "a2eshrcp6u0000.iot.us-east-1.amazonaws.com";  // also called the REST API endpoint
 config.IOT_BROKER_REGION        = "us-east-1";  // corresponds to the N.Virginia Region.  Use ```eu-west-1``` instead for the Ireland region
 config.IOT_THING_NAME           = "thing1";

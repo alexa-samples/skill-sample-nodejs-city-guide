@@ -1,243 +1,209 @@
 # Build An Alexa City Guide Skill
-[![Voice User Interface](https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/navigation/1-locked._TTH_.png)](https://github.com/alexa/alexa-cookbook/tree/master/labs/LocalRecommendations/instructions/1-voice-user-interface.md)[![Lambda Function](https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/navigation/2-locked._TTH_.png)](https://github.com/alexa/alexa-cookbook/tree/master/labs/LocalRecommendations/instructions/2-lambda-function.md)[![Connect VUI to Code](https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/navigation/3-locked._TTH_.png)](https://github.com/alexa/alexa-cookbook/tree/master/labs/LocalRecommendations/instructions/3-connect-vui-to-code.md)[![Testing](https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/navigation/4-locked._TTH_.png)](https://github.com/alexa/alexa-cookbook/tree/master/labs/LocalRecommendations/instructions/4-testing.md)[![Customization](https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/navigation/5-on._TTH_.png)](https://github.com/alexa/alexa-cookbook/tree/master/labs/LocalRecommendations/instructions/5-customization.md)[![Publication](https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/navigation/6-off._TTH_.png)](https://github.com/alexa/alexa-cookbook/tree/master/labs/LocalRecommendations/instructions/6-publication.md)
+[![Voice User Interface](https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/navigation/1-locked._TTH_.png)](https://github.com/alexa/skill-sample-nodejs-city-guide/blob/master/step-by-step/1-voice-user-interface.md)[![Lambda Function](https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/navigation/2-locked._TTH_.png)](https://github.com/alexa/skill-sample-nodejs-city-guide/blob/master/step-by-step/2-lambda-function.md)[![Connect VUI to Code](https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/navigation/3-locked._TTH_.png)](https://github.com/alexa/skill-sample-nodejs-city-guide/blob/master/step-by-step/3-connect-vui-to-code.md)[![Testing](https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/navigation/4-locked._TTH_.png)](https://github.com/alexa/skill-sample-nodejs-city-guide/blob/master/step-by-step/4-testing.md)[![Customization](https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/navigation/5-on._TTH_.png)](https://github.com/alexa/skill-sample-nodejs-city-guide/blob/master/step-by-step/5-customization.md)[![Publication](https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/navigation/6-off._TTH_.png)](https://github.com/alexa/skill-sample-nodejs-city-guide/blob/master/step-by-step/6-publication.md)
 
-## Customization Labs
+## Customize the Skill to be Yours
 
+At this point, you should have a working copy of our City Guide skill.  In order to make it your own, you will need to customize it with data and responses that you create.  Here are the things you will need to change:
 
-## Lab 2 - Intents with Slots
+1.  **New data.** You will need to create a new dataset for your skill that *isn't* the Gloucester, Massachusetts.  If you are looking for an idea, just use your hometown or favorite vacation destination.
 
-This lab will have you add Intents with Slots.
+    1.  **Open a copy of index.js.** If you haven't already downloaded the code for this project, [you can find a copy of index.js here on GitHub](https://github.com/alexa/skill-sample-nodejs-city-guide/blob/master/lambda/custom/index.js).  You can use a simple, lightweight code editor like [Atom](http://atom.io), [Sublime Text](http://sublimetext.com), or [VSCode](http://code.visualstudio.com), but you also have the option to edit the code directly in your Lambda function.
 
-We will add a new Intent called ```MyNameIsIntent``` and define a slot with the intent.
+    2.  **Search for the comment "const data = {"**  This is the data for our skill.  You can see that there is a row for city, state, postcode, restaurants, and attractions.
 
-Follow the steps for creating an intent in [step 1](https://github.com/alexa/alexa-cookbook/tree/master/labs/LocalRecommendations/instructions/1-voice-user-interface.md) with a sample utterance of "my name is {firstname}""
+        You can provide as few or as many properties for your restaurant and attractions data as you would like, but we recommend a minimum of three to keep your skill interesting.  
 
- * Create another handler within your AWS Lambda function for MyNameIsIntent that stores the firstname slot value in a local variable:
- * Be sure this line of code exists *inside* the scope of this new Intent Handler.
+    3.  **Consider using built-in slot values.** We recommend considering data from the built-in slot values provided by Amazon.  You still need to build your entire dataset, but using values from the built-in slots will make your work in the next few steps easier.  We have provided a few examples below, but you can see the [entire list of built-in slot values here](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/built-in-intent-ref/slot-type-reference#list-types).
+
+        | Slot Name | Description | Sample Values | Supported Languages |
+        | --------- | ----------- | ------------- | ------------------- |
+        | [AMAZON.Actor](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/built-in-intent-ref/slot-type-reference#actor) | Names of actors and actresses | Alan Rickman, Amy Adams, Daniel Radcliffe, Emma Watson | US |
+        | [AMAZON.Airline](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/built-in-intent-ref/slot-type-reference#airline) | Name of a variety of airlines | Alaska Airlines, British Airways, Dolphin Air, Maestro | US |
+        | [AMAZON.Animal](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/built-in-intent-ref/slot-type-reference#animal) | Names of many different animals | blister beetle, common frog, moray eel, opossum, spider monkey | US |
+        | [AMAZON.Comic](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/built-in-intent-ref/slot-type-reference#comic) | Titles of comic books | Justice League, Runaways, The Amazing Spiderman, Watchmen, X-Men | US |
+        | [AMAZON.EUROPE_CITY](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/built-in-intent-ref/slot-type-reference#europe_city) | European and world cities | Kempten, Lourdes, Paris, London, Barcelona | US, UK, DE |
+        | [AMAZON.Sport](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/built-in-intent-ref/slot-type-reference#sport) | Names of sports | basketball, college football, football, gymnastics, team handball | US |
+        | [AMAZON.VideoGame](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/built-in-intent-ref/slot-type-reference#videogame) | Titles of video games | Doom Two, Lemmings, The Sims, Worms | US |
+
+    4.  **Once you have your data, here are a couple of tips to remember as we move forward:**
+
+        *  **Alexa will read your restaurant and attraction names, so each property name should be readable in your questions.**  These names are also used in **cards** in the Alexa app, so you should capitalize the first letter of each word.  The skill will automatically separate words and add spaces as necessary.
+        *  **If you can't remember the details for a place, just look them up.** We're going to be publishing this skill, so we need to make sure that our users are getting accurate data.
+
+    5.  **When you have replaced the data in index.js, copy the contents of your file to your Lambda function.**  This should be as simple as copying the text, and pasting it into the code box for your Lambda.
+
+        <img src="https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/quiz-game/5-1-5-lambda-code-box._TTH_.png" />
+
+2.  **New language.** If you are creating this skill for another language other than English, you will need to make sure Alexa's responses are also in that language.
+
+    *  For example, if you are creating your skill in German, every single response that Alexa makes has to be in German.  You can't use English responses or your skill will fail certification.
+
+3.  **Once you have made the updates listed above, you can move on to some of the optional customization below.**
+
+## Add a New Intent with Slots
+
+1.  **Choosing Slot Types**
+
+Continuing with City Guide, we’ve customized for our city/town, let’s add a feature by adding a new intent, such as a new type of intent that we want our skill to handle. Let’s create an intent so we can ask this skill which sports team plays hockey, baseball, etc. Go into skill builder, create an intent, type a sample utterance, double-click on slot word and define that, then add some code to pull out a slot value and handle the intent and provide a custom response to the user.
+
+1. Go to developer.amazon, click Interaction Model on the left to enter the skill builder.
+
+1. Click "Add New Intent".
+
+1. Name it ``` TeamNameIntent ``` and click Create Intent.
+
+1. Click utterances and type: "what team plays basketball" then enter.
+
+1. Double-click the word basketball, and name it "sport" in the create a new intent slot on the right.
+
+1. Click choose a slot type. You should see a list of suggested slot types- search for sport here, then choose the premade ``` AMAZON.sport ``` type.
+
+1. Click Save & then click Build Skill.
+
+1. Click test.
+
+1. Type "what team plays baseball" into the Service Simulator > Enter Utterance field and then hit enter.
+
+1. When you see the Lambda Request box fill with code, select everything in that box and copy it.
+
+1. In your aws.amazon window: click ‘Actions’ button, then select "Configure Test Event".
+
+1. Paste the code that you just copied into the field that comes up, then scroll down and click "Save and Test".
+
+1. This test should fail, but we expect it to so it's ok.  
+
+1. Go back to your Lambda function and find your handlers. Copy an entire handler and paste it in. You should now have something like this:
+
+```     
+    'AboutIntent': function () {
+        this.emit(':tell', this.t('ABOUT'));
+    },
+
+    'AboutIntent': function () {
+        this.emit(':tell', this.t('ABOUT'));
+    },
+```
+
+1. Change the name of your second AboutIntent to ``` TeamNameIntent ``` .
+
+1. Add a line below the name that has this code: ``` let say = 'handling the team name intent'; ``` .
+
+1. Add a line below that with this code: ``` this.emit(':tell', say); ``` .
+
+1. Now Click Save at the top, then click Test.  This time our test should pass.
+
+1. On the line below ``` let say = 'handling the team name intent'; ```, paste this code:
 
 ```
-  const myName = this.event.request.intent.slots.firstname.value;
-  const speechOutput =  'hello, ' + myName;
-  const reprompt = 'try again.'
-```
-
- * Repeat the name back to the user as part of the MyNameIsIntent handler.
-
- For example, you could have the MyNameIsIntent handler do this :
-
-```
-  this.response.speak(speechOutput).listen(reprompt);
-  this.emit(':responseReady');
-```
-
-## Lab 3 - Session Attributes
-
-Add session attributes to your skill to remember things.
-
-Based on your work in the previous lab, your lambda function now has a MyNameIsIntent handler.
-
-Add the following line of code after you have retrieved the firstname slot value into the myName variable:
-
-```this.attributes['name'] = myName;```
-
-Now, locate the handler for the AMAZON.StopIntent that you defined in Lab 1.
-Within this handler, replace the code with the following:
-
-```
-  let myName = '';
-  const speechOutput = 'goodbye, ' + myName;
-
-  if (this.attributes['name']) {
-    myName = this.attributes['name'];
-  }
-
-  this.speak(speechOutput);
-  this.emit(':responseReady');
-
-```
-
-Test your skill.  Say "my name is sam".  Then say "stop".  You should hear a personalized goodbye message.
-
-## Lab 4 - Calling Web Services
-Your skill can make calls to external web services, APIs and REST services.
-
-Read and follow the tutorial in the [external-calls/httpsGet](https://github.com/alexa/alexa-cookbook/blob/master/external-calls/httpsGet/README.md) folder, to create a starter skill that calls a web service.
-
-Once you have this skill working:
- + Review the Lambda code.
- + Change the value of the myRequest from 'Florida' to 'California' or any other state.
- + Recalling what you have learned so far, try to add an Intent and Slot so that the user can say which state they want.
-
-
-For example, you can repeat the steps from Lab 2, to add a new Intent to the Intent Schema, with the following slot:
-
-```
-        {
-          "name":"usstate",
-          "type":"AMAZON.US_STATE"
+        let sportName = '';
+        if (this.event.request.intent.slots.sport.value) {
+            sportName = this.event.request.intent.slots.sport.value;
+        }
+        switch(sportName) {
+        case 'basketball':
+          say = 'The Boston Celtics are the local basketball team.';
+          break;
+          case 'hockey':
+          say = 'The Boston Bruins are the local hockey team.';
+          break;
+          case 'baseball':
+          say = 'The Boston Red Sox are the local baseball team.';
+          break;
+          case 'football':
+          say = 'The New England Patriots are the local football team.';
+          break;
+          default:
+          say = 'Please try again. You can ask which team plays either basketball, hockey, baseball, or football. ';
         }
 ```
 
-Be sure to add a corresponding Sample Utterance line, such as:
+1. Based on what the user says, this will give our user a response to what they asked, and the default will ensure that we help the user if they ask for a sport we haven't planned on.
 
-```NewIntent go to {usstate}```
+1. Save, then test again, then go to the developer portal.
 
-Then, within your Lambda code, you can get the value of the slot via:
+1. Now when you test your utterance in the skill builder, you should get and be able to hear a response.
 
-```var myState = this.event.request.intent.slots.usstate.value;```
+### Extra Credit
 
+What about custom slot types? The Alexa [Quiz Game](https://github.com/alexa/skill-sample-nodejs-quiz-game/blob/master/step-by-step/1-voice-user-interface.md) Skill uses a custom slot, named US_STATE_ABBR.  Try creating a custom slot for your own skill.
 
-## Lab 5 - SSML Audio
+## Add Smart Recommendations
 
-Add short MP3 audio clips to your output via SSML.
+When the user says "go outside", the ```GoOutIntent``` intent is called and the code in the GoOutIntent handler block is executed.
+This makes an API call over the Internet to the Yahoo Weather service, which returns the weather and current time in your city.
 
-SSML markup tags can be interspersed directly within normal speech output text.
+You can enhance the ```GoOutIntent``` handler code (around line 185) to make a relevant activity suggestion to the user.
+For example, add logic to decide, based on current time and weather conditions, whether to:
 
-You can test these within the **Voice Simulator** textbox, just above the Service Simulator textbox on the skill TEST page.
+ * Go out to a local beach or park
+ * Recommend a movie theatre or mall
+ * Attend a scheduled public event happening soon
+ * Staying home to watch a movie on Amazon Prime
+ * etc..
 
+### To begin, follow these steps
 
-Examples:
-```
-There is a three second pause here <break time="3s"/>  then the speech continues.
+1. Test ‘go outside’ skill in simulator first. You should get a standard response giving you the time and weather conditions in your city.
 
-<audio src='https://s3.amazonaws.com/my-ssml-samples/Flourish.mp3' />
-<audio src='https://s3.amazonaws.com/my-ssml-samples/cheap_thrills.mp3' />
-<audio src='https://s3.amazonaws.com/my-ssml-samples/this_is_what_you_came_for.mp3' />
-```
+1. Go to your lambda function
 
-For example, you could make Alexa say words and sound effects by preparing an output string like this:
+1. Scroll through your code to one of the last handlers, called ```GoOutIntent```
 
-```
-  let reprompt = 'try again'
-  let speechOutput = " news flash <audio src='https://s3.amazonaws.com/my-ssml-samples/Flourish.mp3' /> , i can create Alexa skills!";
-
-  this.speak(speechOutput).listen(reprompt);
-  this.emit('responseReady');
-```
-
-Read the [documentation page](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference#audio) on how to prepare and host MP3 audio clips in the required format.
-You can use a tool such as "ffmpeg" or "vlc" to down-sample your existing MP3 content.  You can host the MP3s on your own website, or within the AWS S3 service.  Simply create an S3 bucket, upload your files, and set the files to be public, and note file properties which contain the public URL to the file.
-
-
-## Lab 6 - Locale
-Your skill code can create a custom response based on the geographic region of the user, whether they are in US, GB, or DE.
-
-You can add conditional logic like this:
+1. Now, paste this code into your GoOutIntent:
 
 ```
-    let locale = this.event.request.locale;
-    let speechOutput = '';
-    let reprompt = 'try again'
+            let AMPM = localTime.substr(-2);
+            console.log(AMPM);
+            let hour = parseInt(localTime.split(':').shift());
+            if(AMPM == "PM" && hour < 12) { hour = hour + 12; }
+            console.log(hour);
 
-    if (locale == 'en-GB'){
-            speechOutput = 'hiya';
+            let suggestion = 'Read a book.';
 
-    } else if (locale == 'de-DE') {
-            speechOutput = 'guten tag';
+            console.log(suggestion);
 
-    } else {
-            speechOutput = 'hello';
-    }
-    this.speak(speechOutput).listen(reprompt);
-    this.emit('responseReady');
+            if(hour < 7 ) {suggestion = 'Sleep.'; }
+            if(hour >= 7 && hour < 12) {suggestion = 'Ask me for a breakfast recommendation.'; }
+            if(hour >= 12 && hour < 14) {suggestion = 'Ask me for a lunch recommendation.'; }
+            if(hour >= 17 && hour < 20) {suggestion = 'Ask me for a dinner recommendation.'; }
 
-```
+            if(hour >= 22) {suggestion = 'Go to bed.'; }
 
-Based on Dean Bryen's post [How to Build a Multi-Language Alexa Skill](https://developer.amazon.com/blogs/post/Tx2XUAQ741IYQI4/how-to-build-a-multi-language-alexa-skill)
+            if(hour >= 20 && hour < 22) {
+                if(['Rain', 'Shower', 'Thunderstorms'].indexOf(currentCondition) > -1) {
+                    suggestion = 'Stay home and watch a movie on Amazon Prime since it is wet outside.';   
+                } else {
+                    suggestion = 'Check out what is playing at the Cineplex movie theater on 123 Main St.';
+                }
 
+            }
 
-## Lab 7 - IOT Updates
-Controlling IOT Devices
+            if (['Sunny'].indexOf(currentCondition) > -1 -1 && currentTemp > 75 && hour < 11) {suggestion = 'Plan a day at the beach, as it is sunny and warm today.'}
 
-Read and follow the tutorial in the [aws/Amazon-IOT](https://github.com/alexa/alexa-cookbook/blob/master/aws/Amazon-IOT/README.md) folder.  You will:
+            console.log(suggestion);
+            this.emit(':tell', 'It is ' + localTime
+            + ' and the weather in ' + data.city
+            + ' is '
+            + currentTemp + ' and ' + currentCondition
+            + '. I suggest you ' + suggestion);
+```            
 
- + Create a new virtual IOT device
- + Update it via a skill Lambda function
- + Build a web app to simulate a device and show updates happening
+1. What we have just done is create some logic that matches possible outcomes to a custom response for our users.
 
+1. Now click Save, then click Test. Our test should pass.
 
-## Lab 8 - Session in DynamoDB
+1. Go to the developer portal.
 
-Skills written with the Node.JS ```alexa-sdk``` can easily store their session attributes in DynamoDB when the skill terminates.
+1. Type 'go outside' into the Enter Utterance field found in the Service Simulator and press enter
 
-When the user re-launches the skill at a later time, the session attributes are reloaded and available to the skill.
+1. Alexa should give us a customized recommendation according to your code.
 
-#### Pre-requisites:
-Complete the lab exercises above.  You should have a Hello World skill that recalls the user's name upon exit.
-Review the [Lab 3 solution](https://gist.github.com/robm26/aec28e68137e776aea9722a9fa7b4d56) to quickly create this skill.
+### Extra Credit
 
-
-#### Lab Steps:
-
-Within your Lambda function's ```exports.handler``` block, add one new line:
-
-
-```
-exports.handler = function(event, context, callback) {
-    let alexa = Alexa.handler(event, context);
-
-
-    alexa.dynamoDBTableName = 'YourTableName'; // creates new table for userid:session.attributes
-
-    alexa.registerHandlers(handlers);
-    alexa.execute();
-};
-```
-
-Add permissions for your Lambda function to access DynamoDB
-
-1. From within AWS Console, click on IAM, then Roles, then ```lambda_basic_execution```:
-1. Click "Attach Policy" and select a DynamoDB policy such as **AmazonDynamoDBFullAccess**
-1. Test your skill by executing a unit test from the AWS Lambda console.
-1. You may see an error such as ```"errorMessage": "Requested resource not found"```.  This is okay.
-1. Wait 60 seconds, then navigate to [AWS DynamoDB](https://console.aws.amazon.com/dynamodb/home) and click on Tables.
-1. You should see a table called ```YourTableName```.
-1. Return to the Lambda console, and test your function again.  It should now succeed.
-1. Return to DynamoDB, and click on Tables, then ```YourTableName```
-1. Click on ```Items``` and you should now see a record that has "amzn1.ask.account" in the ```userId``` column
-1. Click on this record to review the data stored for this userId.  You should see a mapAttr object that stores the state of your session.attributes.
-
-
-Note:
- * The session.attribute state is persisted in Dynamo only when your skill ends.
- * The previous session.attributes is loaded again when the user starts the skill again.
- * The first 25GB of data stored in DynamoDB is always free.
-
-#### Lab Demo
-Test the full lifecycle of your skill to verify your name is remembered.
-
-1. Launch your skill or begin testing in the Skill Test page.
-1. Say "my name is sam"
-1. Say "stop"
- + Your session has now ended and the "name" attribute should be stored in the DynamoDB table.  This is equivalent of an Echo user allowing the session to end and waiting for some time.
-1. Begin testing the skill again.  Say "help"
- + You should hear "here is the help for you, sam"
-
-
-## Lab 9 (optional)
-Account Linking allows your users to enable your skill, and then enter their credentials to your existing website or directory.
-This is how Uber and Domino's Pizza links an Alexa user to a user within their service.  The skill can gain access to user attributes, and the skill can make authenticated calls into the service using an OAuth token that is automatically kept for the user with their enabled skill.
-
-Account linking is required as a component of a Smart Home skill.
-
- * Review the blog post about Account Linking: [Linking your Skill with LWA in Five Steps](https://developer.amazon.com/blogs/post/Tx3CX1ETRZZ2NPC/Alexa-Account-Linking-5-Steps-to-Seamlessly-Link-Your-Alexa-Skill-with-Login-wit)
-
-Setup Account Linking to "Login with Amazon" as in the blog post.  Welcome the user by saying their full name.
-
-## Lab 10
-
-Using the **alexa-sdk**
-
-  1. Search the internet for ```npm alexa sdk```
-  1. Click the first link to open the alexa-sdk node module project page
-  1. Read and scroll through the documentation and try out the code snippets in your skill.
-  1. See if you can implement the Hi-Low guessing game described in the documentation.
-
-
-**Once you have made the updates listed on this page, you can click "Next" to move on to Publishing and Certification of your skill.**
+What if we wanted to get info about local movie showtimes? Try adding another API call, maybe one that checks movie showtimes for a local theater, or something creative that you come up with yourself!
 
 
 <br/><br/>
-<a href="https://github.com/alexa/alexa-cookbook/tree/master/labs/LocalRecommendations/instructions/6-publication.md"><img src="https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/general/buttons/button_next_publication._TTH_.png" /></a>
+<a href="https://github.com/alexa/skill-sample-nodejs-city-guide/blob/master/instructions/6-intents-slots.md"><img src="https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/general/buttons/button_next_publication._TTH_.png" /></a>
 
 <img height="1" width="1" src="https://www.facebook.com/tr?id=1847448698846169&ev=PageView&noscript=1"/>

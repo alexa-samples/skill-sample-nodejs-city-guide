@@ -1,12 +1,12 @@
-var wordsmithKey = 'YOUR KEY HERE';
-var Alexa = require('alexa-sdk');
-var https = require('https');
+const wordsmithKey = 'YOUR KEY HERE';
+const Alexa = require('alexa-sdk');
+const https = require('https');
 
 
 // 1. Text strings =====================================================================================================
 //    Modify these strings and messages to change the behavior of your Lambda function
 
-var languageStrings = {
+const languageStrings = {
     'en': {
         'translation': {
             'WELCOME' : "Welcome to Gloucester Guide!",
@@ -17,7 +17,7 @@ var languageStrings = {
     }
     // , 'de-DE': { 'translation' : { 'TITLE'   : "Local Helfer etc." } }
 };
-var data = {
+const data = {
     "city"        : "Gloucester",
     "state"       : "MA",
     "postcode"    : "01930",
@@ -81,7 +81,7 @@ var data = {
 // Weather courtesy of the Yahoo Weather API.
 // This free API recommends no more than 2000 calls per day
 
-var myAPI = {
+let myAPI = {
     host: 'query.yahooapis.com',
     port: 443,
     path: `/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22${encodeURIComponent(data.city)}%2C%20${data.state}%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys`,
@@ -90,7 +90,7 @@ var myAPI = {
 // 2. Skill Code =======================================================================================================
 
 exports.handler = function(event, context, callback) {
-    var alexa = Alexa.handler(event, context);
+    let alexa = Alexa.handler(event, context);
 
     // alexa.appId = 'amzn1.echo-sdk-ams.app.1234';
     ///alexa.dynamoDBTableName = 'YourTableName'; // creates new table for session.attributes
@@ -99,9 +99,9 @@ exports.handler = function(event, context, callback) {
     alexa.execute();
 };
 
-var handlers = {
+const handlers = {
     'LaunchRequest': function () {
-        var say = this.t('WELCOME') + ' ' + this.t('HELP');
+        let say = this.t('WELCOME') + ' ' + this.t('HELP');
         this.emit(':ask', say, say);
     },
 
@@ -110,48 +110,48 @@ var handlers = {
     },
 
     'CoffeeIntent': function () {
-        var restaurant = randomArrayElement(getRestaurantsByMeal('coffee'));
+        let restaurant = randomArrayElement(getRestaurantsByMeal('coffee'));
         this.attributes['restaurant'] = restaurant.name;
 
-        var say = 'For a great coffee shop, I recommend, ' + restaurant.name + '. Would you like to hear more?';
+        let say = 'For a great coffee shop, I recommend, ' + restaurant.name + '. Would you like to hear more?';
         this.emit(':ask', say);
     },
 
     'BreakfastIntent': function () {
-        var restaurant = randomArrayElement(getRestaurantsByMeal('breakfast'));
+        let restaurant = randomArrayElement(getRestaurantsByMeal('breakfast'));
         this.attributes['restaurant'] = restaurant.name;
 
-        var say = 'For breakfast, try this, ' + restaurant.name + '. Would you like to hear more?';
+        let say = 'For breakfast, try this, ' + restaurant.name + '. Would you like to hear more?';
         this.emit(':ask', say);
     },
 
     'LunchIntent': function () {
-        var restaurant = randomArrayElement(getRestaurantsByMeal('lunch'));
+        let restaurant = randomArrayElement(getRestaurantsByMeal('lunch'));
         this.attributes['restaurant'] = restaurant.name;
 
-        var say = 'Lunch time! Here is a good spot. ' + restaurant.name + '. Would you like to hear more?';
+        let say = 'Lunch time! Here is a good spot. ' + restaurant.name + '. Would you like to hear more?';
         this.emit(':ask', say);
     },
 
     'DinnerIntent': function () {
-        var restaurant = randomArrayElement(getRestaurantsByMeal('dinner'));
+        let restaurant = randomArrayElement(getRestaurantsByMeal('dinner'));
         this.attributes['restaurant'] = restaurant.name;
 
-        var say = 'Enjoy dinner at, ' + restaurant.name + '. Would you like to hear more?';
+        let say = 'Enjoy dinner at, ' + restaurant.name + '. Would you like to hear more?';
         this.emit(':ask', say);
     },
 
     'AMAZON.YesIntent': function () {
-        var restaurantName = this.attributes['restaurant'];
-        var restaurantDetails = getRestaurantByName(restaurantName);
+        let restaurantName = this.attributes['restaurant'];
+        let restaurantDetails = getRestaurantByName(restaurantName);
 
-        var say = restaurantDetails.name
+        let say = restaurantDetails.name
             + ' is located at ' + restaurantDetails.address
             + ', the phone number is ' + restaurantDetails.phone
             + ', and the description is, ' + restaurantDetails.description
             + '  I have sent these details to the Alexa App on your phone.  Enjoy your meal! <say-as interpret-as="interjection">bon appetit</say-as>' ;
 
-        var card = restaurantDetails.name + '\n' + restaurantDetails.address + '\n'
+        let card = restaurantDetails.name + '\n' + restaurantDetails.address + '\n'
             + data.city + ', ' + data.state + ' ' + data.postcode
             + '\nphone: ' + restaurantDetails.phone + '\n';
 
@@ -160,14 +160,14 @@ var handlers = {
     },
 
     'AttractionIntent': function () {
-        var distance = 200;
+        let distance = 200;
         if (this.event.request.intent.slots.distance.value) {
             distance = this.event.request.intent.slots.distance.value;
         }
 
-        var attraction = randomArrayElement(getAttractionsByDistance(distance));
+        let attraction = randomArrayElement(getAttractionsByDistance(distance));
 
-        var say = 'Try '
+        let say = 'Try '
             + attraction.name + ', which is '
             + (attraction.distance == "0" ? 'right downtown. ' : attraction.distance + ' miles away. Have fun! ')
             + attraction.description;
@@ -207,8 +207,8 @@ var handlers = {
 
 function getRestaurantsByMeal(mealtype) {
 
-    var list = [];
-    for (var i = 0; i < data.restaurants.length; i++) {
+    let list = [];
+    for (let i = 0; i < data.restaurants.length; i++) {
 
         if(data.restaurants[i].meals.search(mealtype) >  -1) {
             list.push(data.restaurants[i]);
@@ -219,8 +219,8 @@ function getRestaurantsByMeal(mealtype) {
 
 function getRestaurantByName(restaurantName) {
 
-    var restaurant = {};
-    for (var i = 0; i < data.restaurants.length; i++) {
+    let restaurant = {};
+    for (let i = 0; i < data.restaurants.length; i++) {
 
         if(data.restaurants[i].name == restaurantName) {
             restaurant = data.restaurants[i];
@@ -231,9 +231,9 @@ function getRestaurantByName(restaurantName) {
 
 function getAttractionsByDistance(maxDistance) {
 
-    var list = [];
+    let list = [];
 
-    for (var i = 0; i < data.attractions.length; i++) {
+    for (let i = 0; i < data.attractions.length; i++) {
 
         if(parseInt(data.attractions[i].distance) <= maxDistance) {
             list.push(data.attractions[i]);
@@ -243,19 +243,19 @@ function getAttractionsByDistance(maxDistance) {
 }
 
 // Abstraction layer for weather conditions
-var condMap = {
+let condMap = {
     rain: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 35, 37, 38, 39, 40, 45, 47],
     snow: [13, 14, 15, 16, 17, 18, 41, 42, 43, 46],
     cloudy: [19, 20, 21, 22, 23, 24, 26, 27, 28, 29, 30, 44]
 }
 
 function getWeather(callback) {
-    var https = require('https');
+    let https = require('https');
 
 
-    var req = https.request(myAPI, res => {
+    let req = https.request(myAPI, res => {
         res.setEncoding('utf8');
-        var returnData = "";
+        let returnData = "";
 
         res.on('data', chunk => {
             returnData = returnData + chunk;
@@ -282,7 +282,7 @@ function getWeather(callback) {
     req.end();
 }
 function randomArrayElement(array) {
-    var i = 0;
+    let i = 0;
     i = Math.floor(Math.random() * array.length);
     return(array[i]);
 }

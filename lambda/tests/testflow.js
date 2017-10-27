@@ -12,13 +12,13 @@ const options = {
     stdout       : true,    // standard output  / console.log() in your code
     delay        : 2.0      // seconds between requests
 };
-var appId = 'amzn1.echo-sdk-ams.app.1234';  // set this to match your skill's alexa.appId to remove warnings
-var locale = 'en-US';
+const appId = 'amzn1.echo-sdk-ams.app.1234';  // set this to match your skill's alexa.appId to remove warnings
+const locale = 'en-US';
 
-var fs = require("fs");
-var MyLambdaFunction = require('./src/index.js'); // Your Lambda source with exports.handler
+const fs = require("fs");
+const MyLambdaFunction = require('./lambda/custom/index.js'); // Your Lambda source with exports.handler
 
-var MyDialog = './dialogs/default.txt';
+const MyDialog = './dialogs/default.txt';
 
 if (process.argv[2]) {
     MyDialog = './dialogs/' + process.argv[2];
@@ -31,16 +31,16 @@ console.log();
 
 const OriginalConsoleLog = console.log;
 
-var slotname = '';
-var slotvalue = '';
-var sa = {};
-var current_line = 1;
-var lineArray = [];
-var Intent = '';
-var prompt = false;
+let slotname = '';
+let slotvalue = '';
+let sa = {};
+let current_line = 1;
+let lineArray = [];
+let Intent = '';
+let prompt = false;
 
 
-var context = {
+let context = {
     'succeed': function (data) {
 
         if (data.response.shouldEndSession) {
@@ -56,10 +56,10 @@ var context = {
                 console.log('\x1b[35m%s\x1b[0m ', JSON.stringify(sa, null, 2)); // for formatted JSON
             }
         } else {  // you can define an attribute to display by setting options.attribute to a string, such as 'STATE'
-            var printAttributeObject = {};
+            let printAttributeObject = {};
             console.log = OriginalConsoleLog;
-            var printAttributeName = options.attributes.toString();
-            var printAttribute = sa[printAttributeName];
+            let printAttributeName = options.attributes.toString();
+            let printAttribute = sa[printAttributeName];
             if (!printAttribute) {
                 printAttribute = '';
             } else if (typeof printAttribute == 'object') {
@@ -71,7 +71,7 @@ var context = {
 
         }
 
-        var textToSay = data.response.outputSpeech.ssml;
+        let textToSay = data.response.outputSpeech.ssml;
         textToSay = textToSay.replace('<speak>', '    ');
         textToSay = textToSay.replace('</speak>', '');
 
@@ -86,7 +86,7 @@ var context = {
         if (current_line < lineArray.length ) {
 
             // blocking pause
-            var waitTill = new Date(new Date().getTime() + options.delay * 1000);
+            let waitTill = new Date(new Date().getTime() + options.delay * 1000);
             while(waitTill > new Date()){}
 
             console.log();
@@ -109,8 +109,8 @@ var context = {
 
 fs.readFile(MyDialog, function (err, data) {  // open dialog sequence file and read Intents
 
-    // var newSession = true;
-    var request = {};
+    // let newSession = true;
+    let request = {};
 
     lineArray = cleanArray(data.toString().split('\n')); // remove empty or comment lines (# or //)
 
@@ -122,12 +122,12 @@ fs.readFile(MyDialog, function (err, data) {  // open dialog sequence file and r
 function runSingleTest(myLineArray, currentLine, sa) {
 
     prompt = false;
-    var newSession = true;
+    let newSession = true;
     if (currentLine > 0) {
         newSession = false;
     }
 
-    var tokenArray = myLineArray[currentLine].split(' ');
+    let tokenArray = myLineArray[currentLine].split(' ');
 
     if (tokenArray[0].replace('\r','') == '?') {  // pause and prompt the user to confirm
         prompt = true;
@@ -135,7 +135,7 @@ function runSingleTest(myLineArray, currentLine, sa) {
         tokenArray.shift();  // removes first item
     }
 
-    var requestType = tokenArray[0].replace('\r','');
+    let requestType = tokenArray[0].replace('\r','');
     tokenArray.shift();
 
     if (requestType =='LaunchRequest') {
@@ -154,7 +154,7 @@ function runSingleTest(myLineArray, currentLine, sa) {
         Intent = requestType;
         slotArray = [];
 
-        var sdkState = '';
+        let sdkState = '';
 
         if(sa['STATE']){
             sdkState = sa['STATE'];
@@ -179,13 +179,13 @@ function processArray(arr, cb) {
 
     if(arr.length > 0) {
 
-        var equalsPosition = arr[0].indexOf('=');
+        let equalsPosition = arr[0].indexOf('=');
         slotname = arr[0].substr(0, equalsPosition);
         slotvalue = decodeURI(arr[0].substr(equalsPosition+1, 300)).replace('\r','');
 
         promptForSlot(prompt, slotname, slotvalue, (newValue) => {
 
-            var answer = newValue.toString().trim();
+            let answer = newValue.toString().trim();
 
             // console.log('answer = ' + answer);
 
@@ -207,11 +207,11 @@ function processArray(arr, cb) {
     } else {  // nothing left in slot array
 
 
-        var slotArrayString = '{' + slotArray.toString() + '}';
+        let slotArrayString = '{' + slotArray.toString() + '}';
 
-        var slotObj = JSON.parse(slotArrayString);
+        let slotObj = JSON.parse(slotArrayString);
 
-        var req =  {
+        let req =  {
             "type": "IntentRequest",
             "intent": {
                 "name": Intent,
@@ -229,7 +229,7 @@ function processArray(arr, cb) {
 
 function prepareTestRequest(sa, newSession, request){
 
-    var eventJSON =
+    let eventJSON =
         {
             "session": {
                 "sessionId": "SessionId.f9e6dcbb-b7da-4b47-905c.etc.etc",
@@ -247,7 +247,7 @@ function prepareTestRequest(sa, newSession, request){
         };
 
     // blocking pause
-    var waitTill = new Date(new Date().getTime() + options.delay * 1000);
+    let waitTill = new Date(new Date().getTime() + options.delay * 1000);
     while(waitTill > new Date()){}
 
     // call the function
@@ -271,7 +271,7 @@ function promptForSlot(prompt, slotname, slotvalue, callback) {
         // console.log('\x1b[34m%s :\x1b[0m\x1b[32m %s\x1b[0m ', slotname,  slotvalue  );
 
         process.stdin.once('data', function (data) {
-            var answer = data.toString().trim();
+            let answer = data.toString().trim();
 
             // console.log(answer);
 
@@ -307,9 +307,9 @@ function callback(error, data) {
 };
 
 function cleanArray(myArray) {
-    var cleanedArray = [];
+    let cleanedArray = [];
 
-    for (var i = 0; i < myArray.length; i++ ) {
+    for (let i = 0; i < myArray.length; i++ ) {
         if(myArray[i] != '' && myArray[i].substring(0,1) != '#'  && myArray[i].substring(0,2) != '//') {
             cleanedArray.push(myArray[i]);
         }
