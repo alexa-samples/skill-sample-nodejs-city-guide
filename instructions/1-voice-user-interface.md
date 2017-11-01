@@ -55,7 +55,7 @@ There are two parts to an Alexa skill.  The first part is the [Voice User Interf
 
 8.  Click on the "Code Editor" item under **Dashboard** on the top left side of the skill builder.
 
-9.  In the textfield provided, replace any existing code with the code provided in the [Interaction Model](https://github.com/voicehacks/setup-local-recommendations/blob/master/speech-assets/InteractionModel.json), then click "Apply Changes" or "Save Model".  
+9.  In the textfield provided, replace any existing code with the code provided in the [Interaction Model](../InteractionModel.json), then click "Apply Changes" or "Save Model".  
 
 10. Click on the "Dashboard" button.
 
