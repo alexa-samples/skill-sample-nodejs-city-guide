@@ -125,7 +125,7 @@ Continuing with City Guide, we’ve customized for our city/town, let’s add a 
 
 ### Extra Credit
 
-What about custom slot types? The Alexa [Quiz Game](https://github.com/alexa/skill-sample-nodejs-quiz-game/blob/master/step-by-step/1-voice-user-interface.md) Skill uses a custom slot, named US_STATE_ABBR.  Try creating a custom slot for your own skill.
+What about custom slot types? The Alexa [Quiz Game](https://github.com/alexa/skill-sample-nodejs-quiz-game) Skill uses a custom slot, named US_STATE_ABBR.  Try creating a custom slot for your own skill.
 
 ## Add Smart Recommendations
 
