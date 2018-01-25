@@ -71,7 +71,7 @@ const data = {
             "description": "Home of the Boston Red Sox, Fenway park hosts baseball games From April until October, and is open for tours. ",
             "distance": "38"
         }
-    ];
+    ]
 }
 
 const SKILL_NAME = "Gloucester Guide";
