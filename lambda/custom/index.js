@@ -169,19 +169,27 @@ const handlers = {
 
     'AttractionIntent': function () {
         let distance = 200;
-        if (this.event.request.intent.slots.distance.value) {
-            distance = this.event.request.intent.slots.distance.value;
+        if (isNaN(this.event.request.intent.slots.distance.value)) {
+            let say = 'Sorry, I didnt quite catch the distance you asked for. Can you ask that again?';
+
+            this.response.speak(say).listen(say);;
+            this.emit(':responseReady');
+          } else {
+
+            if (this.event.request.intent.slots.distance.value) {
+              distance = this.event.request.intent.slots.distance.value;
+            }
+
+          let attraction = randomArrayElement(getAttractionsByDistance(distance));
+
+          let say = 'Try '
+              + attraction.name + ', which is '
+              + (attraction.distance == "0" ? 'right downtown. ' : attraction.distance + ' miles away. Have fun! ')
+              + attraction.description;
+
+          this.response.speak(say);
+          this.emit(':responseReady');
         }
-
-        let attraction = randomArrayElement(getAttractionsByDistance(distance));
-
-        let say = 'Try '
-            + attraction.name + ', which is '
-            + (attraction.distance == "0" ? 'right downtown. ' : attraction.distance + ' miles away. Have fun! ')
-            + attraction.description;
-
-        this.response.speak(say);
-        this.emit(':responseReady');
     },
 
     'GoOutIntent': function () {
