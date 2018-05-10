@@ -172,7 +172,7 @@ const AttractionHandler = {
         const responseBuilder = handlerInput.responseBuilder;
 
         let distance = 200;
-        if (request.intent.slots.distance.value) {
+        if (request.intent.slots.distance.value && request.intent.slots.distance.value !== "?") {
             distance = request.intent.slots.distance.value;
         }
 
