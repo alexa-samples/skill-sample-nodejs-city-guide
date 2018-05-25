@@ -148,7 +148,7 @@ const YesHandler = {
         } is located at ${restaurantDetails.address
         }, the phone number is ${restaurantDetails.phone
         }, and the description is, ${restaurantDetails.description
-        }  I have sent these details to the Alexa App on your phone.  Enjoy your meal! 
+        }  I have sent these details to the Alexa App on your phone.  Enjoy your meal!
         <say-as interpret-as="interjection">bon appetit</say-as>`;
 
         const card = `${restaurantDetails.name}\n${restaurantDetails.address}\n$
@@ -274,6 +274,39 @@ const ErrorHandler = {
     },
 };
 
+const FallbackHandler = {
+
+  // 2018-May-01: AMAZON.FallackIntent is only currently available in en-US locale.
+
+  //              This handler will not be triggered except in that locale, so it can be
+
+  //              safely deployed for any locale.
+
+  canHandle(handlerInput) {
+
+    const request = handlerInput.requestEnvelope.request;
+
+    return request.type === 'IntentRequest'
+
+      && request.intent.name === 'AMAZON.FallbackIntent';
+
+  },
+
+  handle(handlerInput) {
+
+    return handlerInput.responseBuilder
+
+      .speak(FALLBACK_MESSAGE)
+
+      .reprompt(FALLBACK_REPROMPT)
+
+      .getResponse();
+
+  },
+
+};
+
+
 // 2. Constants ==================================================================================
 
 const languageStrings = {
@@ -361,6 +394,9 @@ const data = {
 };
 
 const SKILL_NAME = 'Gloucester Guide';
+const FALLBACK_MESSAGE = `The ${SKILL_NAME} skill can\'t help you with that.  It can help you learn about Gloucester if you say tell me about this place. What can I help you with?`;
+const FALLBACK_REPROMPT = 'What can I help you with?';
+
 
 
 // 3. Helper Functions ==========================================================================
@@ -466,6 +502,7 @@ exports.handler = skillBuilder
         GoOutHandler,
         HelpHandler,
         StopHandler,
+        FallbackHandler,
         SessionEndedHandler
     )
     .addRequestInterceptors(LocalizationInterceptor)
