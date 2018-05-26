@@ -91,7 +91,7 @@
         {
           "name": "AMAZON.FallbackIntent",
           "samples": []
-        },
+        }
       ]
     }
   }
