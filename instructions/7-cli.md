@@ -26,11 +26,11 @@ This readme assumes you have your developer environment ready to go and that you
 	$ git clone https://github.com/alexa/skill-sample-nodejs-city-guide/
 	```
 
-3. If it's your first time using it, **initiatialize** the [ASK CLI](https://developer.amazon.com/docs/smapi/quick-start-alexa-skills-kit-command-line-interface.html?&sc_category=Owned&sc_channel=RD&sc_campaign=Evangelism2018&sc_publisher=github&sc_content=Content&sc_detail=city-guide-nodejs-V2_CLI-1&sc_funnel=Convert&sc_country=WW&sc_medium=Owned_RD_Evangelism2018_github_Content_city-guide-nodejs-V2_CLI-1_Convert_WW_beginnersdevs&sc_segment=beginnersdevs) by navigating into the repository and running npm command: `ask init`. Follow the prompts.
+3. If it's your first time using it, **configure** the [ASK CLI](https://developer.amazon.com/docs/smapi/quick-start-alexa-skills-kit-command-line-interface.html?&sc_category=Owned&sc_channel=RD&sc_campaign=Evangelism2018&sc_publisher=github&sc_content=Content&sc_detail=city-guide-nodejs-V2_CLI-1&sc_funnel=Convert&sc_country=WW&sc_medium=Owned_RD_Evangelism2018_github_Content_city-guide-nodejs-V2_CLI-1_Convert_WW_beginnersdevs&sc_segment=beginnersdevs) by navigating into the repository and running npm command: `ask configure`. Follow the prompts.
 
 	```bash
 	$ cd skill-sample-nodejs-city-guide
-	$ ask init
+	$ ask configure
 	```
 
 4. Install npm dependencies by navigating into the `/lambda/custom` directory and running the npm command: `npm install --save`
@@ -44,7 +44,7 @@ This readme assumes you have your developer environment ready to go and that you
 
 ASK CLI **will create the skill and the lambda function for you**. The Lambda function will be created in ```us-east-1 (Northern Virginia)``` by default.
 
-1. Navigate to the project's root directory. you should see a file named 'skill.json' there.
+1. Navigate to the project's root directory. You should see a folder named 'skill-package' it contains a file called 'skill.json'.
 2. Deploy the skill and the lambda function in one step by running the following command:
 
 	```bash
@@ -58,12 +58,15 @@ ASK CLI **will create the skill and the lambda function for you**. The Lambda fu
 2. Simulate verbal interaction with your skill through the command line (this might take a few moments) using the following example:
 
 	```bash
-	 $ ask simulate -l en-GB -t "start city guide"
-
-	 ✓ Simulation created for simulation id: 4a7a9ed8-94b2-40c0-b3bd-fb63d9887fa7
-	◡ Waiting for simulation response{
-	  "status": "SUCCESSFUL",
-	  ...
+	 $ ask dialog -l en-GB 
+	 
+	 ========================================== Welcome to ASK Dialog 
+	 ========================================== In interactive mode, type your utterance text onto the console and hit enter 
+	 ========================================== Alexa will then evaluate your input and give a response!
+	 ========================================== Use ".record <fileName>" or ".record <fileName> --append-quit" to save list of utterances to a file. 
+	 ========================================== You can exit the interactive mode by entering ".quit" or "ctrl + c". 
+	 User  > start city guide
+	 ...
 	 ```
 
 3. Once the "Test" switch is enabled, your skill can be tested on devices associated with the developer account as well. Speak to Alexa from any enabled device, from your browser at [echosim.io](https://echosim.io/welcome), or through your Amazon Mobile App and say :
@@ -73,7 +76,7 @@ ASK CLI **will create the skill and the lambda function for you**. The Lambda fu
 	```
 ## Customization
 
-1. ```./skill.json```
+1. ```.skill-package/skill.json```
 
    Change the skill name, example phrase, icons, testing instructions etc ...
 
