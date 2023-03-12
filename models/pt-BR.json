@@ -1,0 +1,98 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "uberlândia tour",
+      "intents": [
+        {
+          "name": "AboutIntent",
+          "samples": [
+            "sobre",
+            "me conte algo sobre essa cidade"
+          ],
+          "slots": []
+        },
+
+        {
+          "name": "CoffeeIntent",
+          "samples": [
+            "café"
+          ],
+          "slots": []
+        },
+        {
+          "name": "BreakfastIntent",
+          "samples": [
+            "café da manhã"
+          ],
+          "slots": []
+        },
+        {
+          "name": "LunchIntent",
+          "samples": [
+            "almoço"
+          ],
+          "slots": []
+        },
+        {
+          "name": "DinnerIntent",
+          "samples": [
+            "jantar"
+          ],
+          "slots": []
+        },
+
+        {
+          "name": "AttractionIntent",
+          "samples": [
+            "me recomende uma atração",
+            "me recomende uma atração em um raio de {distance} metros",
+            "me de uma atividade",
+            "me de uma atividade em um raio de {distance} metros"
+          ],
+          "slots": [
+            {
+              "name": "distance",
+              "type": "AMAZON.NUMBER",
+              "samples": []
+            }
+          ]
+        },
+
+        {
+          "name": "GoOutIntent",
+          "samples": [
+            "saia",
+            "sair",
+            "vamos sair"
+          ],
+          "slots": []
+        },
+        {
+          "name": "AMAZON.YesIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NoIntent",
+          "samples": []
+        },
+
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        }
+      ]
+    }
+  }
+}
